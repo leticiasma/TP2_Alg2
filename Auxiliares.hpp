@@ -1,15 +1,18 @@
 #ifndef AUXILIARES_H
 #define AUXILIARES_H
 
+#include <queue>
+using namespace std;
+
 struct Item{
     float peso;
     float valor;
 };
   
 struct Node{
-    int nivel;
+    int nivel; 
     float peso, profit, bound;
-};
+}; 
 
 class Auxiliares{
 	public:

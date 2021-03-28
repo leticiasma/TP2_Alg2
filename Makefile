@@ -12,7 +12,7 @@ ProblemaMochila.o: ProblemaMochila.cpp ProblemaMochila.hpp Auxiliares.hpp
 	$(CC) $(CFLAGS) -c ProblemaMochila.cpp -o ProblemaMochila.o
 
 Auxiliares.o: Auxiliares.cpp Auxiliares.hpp
-	$(CC) $(CFLAGS) -c Auxiliares.cpp -o Auxiliares.hpp
+	$(CC) $(CFLAGS) -c Auxiliares.cpp -o Auxiliares.o
 
 .PHONY: clean
 
