@@ -4,12 +4,9 @@
 #include <algorithm>
 #include <chrono>
 #include "ProblemaMochila.hpp"
+#include "Auxiliares.hpp"
 
 using namespace std;
-
-bool sortValorRelativo(const pair<float,float> &a, const pair<float,float> &b){
-    return (a.first/a.second > b.first/b.second);
-}
 
 int main(int argc, const char* argv[]) {
 
@@ -47,7 +44,9 @@ int main(int argc, const char* argv[]) {
                         p.paresValorPeso.push_back (make_pair (vi, wi));
                     }
 
-                    sort(p.paresValorPeso.begin(), p.paresValorPeso.end(), sortValorRelativo);
+                    Auxiliares aux;
+
+                    sort(p.paresValorPeso.begin(), p.paresValorPeso.end(), aux.compValorRelativoPar);
 
                     auto start = chrono::high_resolution_clock::now();
                     float solucao = p.solBacktracking(0, p.pesoMax, 0.0);
@@ -56,8 +55,9 @@ int main(int argc, const char* argv[]) {
                     saidaBackt<<argv[i]<<";Leticia da Silva Macedo Alves;"<<duration.count()<<";"<<solucao<<endl;
                    
                     start = chrono::high_resolution_clock::now();
-                    float lucroRaiz = p.pesoMax * (p.paresValorPeso[0].first/p.paresValorPeso[0].second);
-                    solucao = p.solBranchAndBound(0, p.pesoMax, 0.0, lucroRaiz);
+                    //float lucroRaiz = p.pesoMax * (p.paresValorPeso[0].first/p.paresValorPeso[0].second);
+                    //solucao = p.solBranchAndBound(0, p.pesoMax, 0.0);//, p.fila, 0.0);
+                    solucao = p.knapsack(p.pesoMax, p.numItens);
                     stop = chrono::high_resolution_clock::now();
                     duration = chrono::duration_cast<chrono::microseconds>(stop-start);
                     saidaBranchB<<argv[i]<<";Leticia da Silva Macedo Alves;"<<duration.count()<<";"<<solucao<<endl;
